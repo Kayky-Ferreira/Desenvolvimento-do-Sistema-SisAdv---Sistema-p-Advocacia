@@ -1,0 +1,104 @@
+﻿<Window x:Class="SisAdv.Views.CadastrarPagamento"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SisAdv.Views"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}" 
+        TextElement.FontWeight="Regular" 
+        TextElement.FontSize="13" 
+        TextOptions.TextFormattingMode="Ideal"  
+        TextOptions.TextRenderingMode="Auto"         
+        Background="#FFD6D5D5" 
+        FontFamily="{DynamicResource MaterialDesignFont}" 
+        Title="CadastrarPagamento" Height="370" Width="720" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="85"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="102"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="102"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        
+        <!--Talvez seja necessário tirar o valor de Despesa, a não ser que sla, aqui foi para confirmar ou deixo desabilitado-->
+        <StackPanel VerticalAlignment="Center">
+            <Label Content="Data*" FontSize="16" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Right" />
+        </StackPanel>
+        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+            <Label Content="Forma de" FontSize="16" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Right"/>
+            <Label Content="Pagamento*" FontSize="16" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Right"/>
+        </StackPanel>
+        <Label Grid.Row="1" Content="Caixa*" FontSize="16" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Right" Margin="0 25 0 0"/>
+        <Label Grid.Row="2" Content="Valor" FontSize="16" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Right" Margin="0 25 0 0"/>
+        <Label Grid.Row="1" Grid.Column="2" Content="Despesa*" FontSize="16" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Right" Margin="0 25 0 0"/>
+        <Label Grid.Row="3" Content="Id" FontSize="16" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Right" Margin="0 25 0 0"/>
+
+        <!--
+            id_pagamento
+            tipo_pagamento
+            data_pagamento
+            valor_pagamento
+            fk_despesa
+            fk_caixa
+        -->
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="63" Margin="5 0 0 0">
+            <DatePicker x:Name="datapagamento" Width="220" Height="48" FontSize="13" Foreground="Black"
+                       Margin="0 10 0 0" BorderBrush="#BC000000" />
+        </StackPanel>
+        <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="63" Margin="5 0 0 0">
+            <ComboBox x:Name="boxtipopagamento" Width="220" Height="48" FontSize="13" Foreground="Black"
+                       Margin="0 10 0 0" BorderBrush="#BC000000">
+                <ComboBoxItem x:Name="vista" Content="Á vista"/>
+                <ComboBoxItem x:Name="cartao" Content="No cartão"/>
+                <ComboBoxItem x:Name="transferencia" Content="Via transferência"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="63" Margin="5 0 0 0">
+            <ComboBox x:Name="boxcaixa" Width="200" Height="48" FontSize="13" Foreground="Black"
+                       Margin="0 10 0 0" BorderBrush="#BC000000" 
+                       DisplayMemberPath="Mes"
+                       SelectedValuePath="Id"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="63" Margin="5 0 0 0">
+            <ComboBox x:Name="boxdespesa" Width="220" Height="48" FontSize="13" Foreground="Black"
+                       Margin="0 10 0 0" BorderBrush="#BC000000" 
+                       DisplayMemberPath="Origem"
+                       SelectedValuePath="Id"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" IsEnabled="False" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="63" Margin="5 0 0 0">
+            <TextBox x:Name="textvalor" Width="100" Height="48" FontSize="13" Foreground="Black"
+                       Margin="0 10 0 0" BorderBrush="#BC000000" />
+        </StackPanel>
+        <StackPanel Grid.Row="3" IsEnabled="False" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="63" Margin="5 0 0 0">
+            <TextBox x:Name="textid" Width="50" Height="48" FontSize="13" Foreground="Black"
+                       Margin="0 10 0 0" BorderBrush="#BC000000" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="3" Orientation ="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Margin="0 0 5 0" x:Name="BtnSalvar" Width="90" Height="60" BorderBrush="{x:Null}" Background="#FF4EFD46" Foreground="black" Click="BtnSalvar_Click" >
+                <materialDesign:PackIcon Kind="ContentSave" Width="40" Height="30" Foreground="#FFF0F0F0"/>
+            </Button>
+            <Button Margin="25 0 5 0" x:Name="BtnCancelar" Width="90" Height="60" BorderBrush="{x:Null}" Background="#FFCF2121" Foreground="black" Click="BtnDeletarPagamento_Click">
+                <materialDesign:PackIcon Kind="Delete" Width="40" Height="30" Foreground="#FFE4E4E4"/>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="3" Orientation ="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Margin="5 0 5 0" x:Name="Btnpesquisarcaixa" Width="90" Height="60" BorderBrush="{x:Null}" Foreground="black" Background="White" Click="Btnpesquisarcaixa_Click">
+                <materialDesign:PackIcon Kind="Search" Width="40" Height="30" Foreground="Black"/>
+            </Button>
+            <Button Margin="25 0 5 0" x:Name="Btnadicionar" Width="90" Height="60" BorderBrush="{x:Null}" Foreground="black" Background="#FF3285E8" Click="Btnadicionar_Click">
+                <materialDesign:PackIcon Kind="Add" Width="40" Height="30" Foreground="White"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

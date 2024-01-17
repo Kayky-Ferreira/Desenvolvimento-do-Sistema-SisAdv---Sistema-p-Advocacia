@@ -1,0 +1,101 @@
+﻿<Window x:Class="SisAdv.Views.CadastrarDespesa"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SisAdv.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="#FFD6D5D5"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        Title="CadastrarDespesa" Height="560" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top" Height="365">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="190"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="95"/>
+                <RowDefinition Height="95"/>
+                <RowDefinition Height="190"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Valor" Margin="13 0 0 0" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                <TextBox x:Name="TxBValor" Width="100"  Height="30" FontSize="16" Foreground="White"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Data" Margin="13 0 0 0"  FontSize="16" FontWeight="Bold" Foreground="White"/>
+                <DatePicker x:Name="datadopagamento" Width="100" Height="30" FontSize="16" Foreground="White"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Descrição" Margin="13 0 0 0"  FontSize="16" FontWeight="Bold" Foreground="White"/>
+                <TextBox x:Name="TxBDescricao" Width="160" Height="100" FontSize="16" Background="White"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Origem" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                <TextBox x:Name="TxBOrigem" Width="170" Height="30" FontSize="16" Foreground="White"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Mensal" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                <!--hellen slide-->
+                <ToggleButton x:Name="chavemensal" Margin="10 0 0 0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" Background="White" Foreground="White" />
+            </StackPanel>
+
+            <Button Grid.Column="2" Width="100" Height="65" BorderBrush="{x:Null}" Background="#FF1090FB" Foreground="black">
+                <materialDesign:PackIcon Kind="Add" Width="45" Height="40" Foreground="Black"/>
+            </Button>
+            <Label FontSize="14" Grid.Column="2" Foreground="White" Margin="60 75 0 0">Adicionar</Label>
+            <Button Grid.Row="1" Grid.Column="2" Width="100" Height="65" BorderBrush="{x:Null}" Background="#FF1090FB" Foreground="black">
+                <materialDesign:PackIcon Kind="Search" Width="45" Height="40" Foreground="Black"/>
+            </Button>
+            <Label FontSize="14" Grid.Row="1" Grid.Column="2" Foreground="White" Margin="60 75 0 0">Pesquisar</Label>
+            <Button x:Name="Salvar" Grid.Row="2" Grid.Column="2" Width="100" Height="65" BorderBrush="{x:Null}" Background="#FF4EFD46" Foreground="black" Margin="0 -40 0 70" Click="btnSalvar_Click">
+                <materialDesign:PackIcon Kind="ContentSaveAllOutline" Width="45" Height="40" Foreground="Black"/>
+            </Button>
+            <Label FontSize="14" Grid.Row="2" Grid.Column="2" Foreground="White" Margin="70 70 0 0">Salvar</Label>
+            <Button Grid.Row="2" Grid.Column="2" Width="100" Height="65" BorderBrush="{x:Null}" Background="#FFCF2121" Foreground="black" Margin="0 60 0 0">
+                <materialDesign:PackIcon Kind="Delete" Width="45" Height="40" Foreground="Black"/>
+            </Button>
+            <Label FontSize="14" Grid.Row="2" Grid.Column="2" Foreground="White" Margin="70 155 0 0">Excluir</Label>
+        </Grid>
+
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="550"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1" Height="150" Width="500">
+                <Label Content="Gastos - Tabela" Margin="08 0 0 0" FontSize="16" FontWeight="Bold" Foreground="White"/>
+
+                <DataGrid Grid.Row="3" Margin="10" x:Name="gridcadastrardespesa" AlternationCount="2" AutoGenerateColumns="False" BorderBrush="#FF747474" Background="#FFECECEC">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="130" Header="Semanal" Binding="{Binding Valor, ConverterCulture='pt-BR', StringFormat=C}"/>
+                        <DataGridTextColumn Width="130" Header="Mensal" Binding="{Binding Valor, ConverterCulture='pt-BR', StringFormat=C}"/>
+                        <DataGridTextColumn Width="130" Header="Anual" Binding="{Binding Valor, ConverterCulture='pt-BR', StringFormat=C}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+            <StackPanel Margin="13 0 0 0" >
+                <Label FontSize="16" FontWeight="Bold" Foreground="White">Forma de Pagamento</Label>
+                <RadioButton x:Name="RadioCartao" FontSize="16" Foreground="White">Cartão</RadioButton>
+                <RadioButton x:Name="RadioDinheiro" FontSize="16" Foreground="White">Dinheiro</RadioButton>
+                <RadioButton x:Name="RadioTransf" FontSize="16" Foreground="White">Transferência</RadioButton>
+            </StackPanel>
+
+            <StackPanel Margin="0 80 0 0" Orientation="Horizontal">
+                <Label FontSize="16" Margin="13 30 0 0"  FontWeight="Bold" Foreground="White">Código</Label>
+                <TextBox x:Name="TxbCodigo" Width="70" Height="30" Margin="5 0 0 0" FontSize="16" Foreground="White" IsEnabled="False"/>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>

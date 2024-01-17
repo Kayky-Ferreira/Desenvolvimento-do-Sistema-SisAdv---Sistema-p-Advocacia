@@ -1,0 +1,72 @@
+﻿<Window x:Class="SisAdv.Views.ImprimirRelatorio"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SisAdv.Views"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="#FFD6D5D5"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="ImprimirRelatorio" Height="350" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Mês/Ano" Height="39" Width="88" FontSize="20"/>
+            <ComboBox Width="120" Height="26" Margin="10 0" 
+                      DisplayMemberPath="Mes"
+                      SelectedValuePath="Id"
+                      x:Name="comboboxcaixa">
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Data" Height="34" Width="58" FontSize="20"/>
+            <!--O calendário que tem no protótipo da tela é na verdade o DataPicker quando clica pra abrir o calendário-->
+            <DatePicker Width="140" x:Name="dateEscolha"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1"  HorizontalAlignment="Center" Margin="6">
+            <Button x:Name="btnvisualizar" Width="80" Height="70" Background="#FFF1F1F1" BorderBrush="{x:Null}" Click="btnvisualizar_Click">
+                <materialDesign:PackIcon Kind="Visibility" Width="45" Height="50" Foreground="Black"/>
+            </Button>
+            <Label Content="visualizar" Width="70" FontSize="15"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin="5">
+            <Button Width="80" Height="70" Background="#FFF1F1F1" BorderBrush="{x:Null}">
+                <materialDesign:PackIcon Kind="Share" Width="45" Height="50" Foreground="Black"/>
+            </Button>
+            <Label Content="compartilhar" FontSize="15"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Center" Margin="5">
+            <Button Width="80" Height="70" Background="#FFF1F1F1" BorderBrush="{x:Null}" >
+                <materialDesign:PackIcon Kind="Printer" Width="45" Height="50" Foreground="Black"/>
+            </Button>
+            <Label Content="imprimir" FontSize="15" Width="82" Margin="15 0 0 0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"  HorizontalAlignment="Right" Margin="5" >
+            <Button x:Name="btnSalvar" Width="80" Height="70" Background="#FF63E63D" BorderBrush="{x:Null}" Click="btnSalvar_Click">
+                <materialDesign:PackIcon Kind="ContentSave" Width="45" Height="50"/>
+            </Button>
+            <Label Content="salvar" FontSize="15" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>
